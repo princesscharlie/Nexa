@@ -1,21 +1,41 @@
 # Nexa
 
-Nexa is a lightweight, keyboard-friendly rich document editor foundation. It runs in any modern browser and is structured so the document model and desktop shell can be expanded without putting application logic into a single UI component.
+Nexa is now a Windows desktop application shell built with Electron, using the editor UI and document workflow that were already built into the repository.
 
-## Current capabilities
+## What changed
 
-- Paginated A4-style writing canvas with ruler, zoom and status bar
-- Rich editing through a contenteditable document model: headings, quote, font, size, bold, italic, underline, strike-through, colors, alignment, lists and indentation
-- Tables, images, hyperlinks and page breaks
-- New/open/save native `.nexa` JSON documents, plain-text export and HTML import
-- Autosave state in local storage, unsaved-change warning, undo/redo and common keyboard shortcuts
-- Navigation pane with live heading index, word/character counts and print command
-- Light/dark appearance with system-friendly typography and responsive layout
+- Added a real desktop app entry point (`main.js`)
+- Added Electron package configuration (`package.json`)
+- Added a secure preload bridge (`preload.js`)
+- Kept the polished rich-text editor interface and local document features
 
-## Running locally
+## Run it on Windows
 
-Open `index.html` in a modern browser, or serve the repository with any static file server. No build step is required.
+1. Install Node.js 20+ if it is not already installed.
+2. In the project folder run:
 
-## Architecture direction
+```bash
+npm install
+npm start
+```
 
-The current repository was empty apart from its README, so Nexa starts with a dependency-free shell that is easy to run and audit. The next production steps should introduce a typed document model and adapter layer for DOCX/ODT conversion, then move the shell into a Windows desktop host (WebView2/Tauri/Electron) once the conversion and pagination engines are selected. The UI intentionally does not expose unsupported DOCX/ODT controls or non-functional placeholder buttons.
+## Build a Windows installer
+
+```bash
+npm run dist
+```
+
+This produces a Windows installer using `electron-builder`.
+
+## Current status
+
+This version is the desktop-app foundation for Nexa. It gives the editor a proper Windows presence and desktop packaging, while keeping the existing browser-based editing logic intact.
+
+The next production phases would be:
+
+- real DOCX/ODT parsing and export
+- file picker integration for native OS dialogs
+- Windows menu/toolbar polish
+- installer branding and app icon
+- native print settings and window controls
+- deeper document model separation for production-grade editing
